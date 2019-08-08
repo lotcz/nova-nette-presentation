@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="cs">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>Nette - prezentace</title>
+
+		<meta
+			name="description"
+			content="Prezentace a příklad o Nette pro vývojáře v TV Nova."
+		/>
+		<meta name="author" content="Karel Zavadil" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+		/>
+
+		<link rel="stylesheet" href="http://zavadil.eu/reveal.js/css/reveal.css" />
+		<link
+			rel="stylesheet"
+			href="http://zavadil.eu/reveal.js/css/theme/black.css"
+			id="theme"
+		/>
+
+		<style>
+			.reveal section img {
+				border-style: none;
+				box-shadow: none;
+				background-color: transparent;
+			}
+
+			.reveal ul {
+				margin-bottom: 30px;
+			}
+
+			.reveal table {
+				color: White;
+				margin-bottom: 30px;
+			}
+
+			.reveal .right {
+				text-align: right;
+			}
+
+			.reveal .strong {
+				color: White;
+			}
+
+			.reveal span.important {
+				color: Violet;
+			}
+
+			.reveal .small,
+			.reveal ul,
+			.reveal table {
+				font-size: 65%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+								![](img/logo-nette.png)
+						</textarea
+					>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+							### Key concepts
+
+							- AJAX
+							- DRY
+							- KISS
+							- MVC
+							- code reusability
+
+						</textarea
+					>
+
+					<aside class="notes"></aside>
+				</section>
+
+				<section><h2>To je vše</h2></section>
+			</div>
+		</div>
+
+		<script src="http://zavadil.eu/reveal.js/lib/js/head.min.js"></script>
+		<script src="http://zavadil.eu/reveal.js/js/reveal.js"></script>
+		<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: "convex", // none/fade/slide/convex/concave/zoom
+				backgroundTransition: "zoom",
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					//{ src: '/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{
+						src: "http://zavadil.eu/reveal.js/plugin/markdown/marked.js",
+						condition: function() {
+							return !!document.querySelector("[data-markdown]");
+						}
+					},
+					{
+						src: "http://zavadil.eu/reveal.js/plugin/markdown/markdown.js",
+						condition: function() {
+							return !!document.querySelector("[data-markdown]");
+						}
+					},
+					//{ src: '/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{
+						src: "http://zavadil.eu/reveal.js/plugin/search/search.js",
+						async: true
+					},
+					{
+						src: "http://zavadil.eu/reveal.js/plugin/zoom-js/zoom.js",
+						async: true
+					},
+					{
+						src: "http://zavadil.eu/reveal.js/plugin/notes/notes.js",
+						async: true
+					}
+				]
+			});
+
+			var link = document.createElement("link");
+			link.rel = "stylesheet";
+			link.type = "text/css";
+			link.href = window.location.search.match(/print-pdf/gi)
+				? "http://zavadil.eu/reveal.js/css/print/pdf.css"
+				: "http://reveal-js.zavadil.eu/css/print/paper.css";
+			document.getElementsByTagName("head")[0].appendChild(link);
+		</script>
+	</body>
+</html>
