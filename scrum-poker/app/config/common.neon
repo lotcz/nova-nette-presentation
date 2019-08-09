@@ -1,4 +1,9 @@
 parameters:
+	dumpFile: %appDir%/db/createdb.sql
+	dbFile: %appDir%/db/db.sqlite
+
+database:
+	dsn: 'sqlite:%dbFile%'
 
 
 application:
@@ -13,3 +18,8 @@ session:
 
 services:
 	router: App\Router\RouterFactory::createRouter
+	dbcreator: 
+		factory: App\DatabaseCreator
+		setup:
+			- setDumpFilePath(%dumpFile%)
+			- setDbFilePath(%dbFile%)
