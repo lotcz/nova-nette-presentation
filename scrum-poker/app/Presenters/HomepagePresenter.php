@@ -5,22 +5,33 @@ declare(strict_types=1);
 namespace App\Presenters;
 
 use Nette;
-use App\DatabaseCreator;
+use App\DatabaseInitializer;
 
 final class HomepagePresenter extends Nette\Application\UI\Presenter {
 
-	/** @var App\DatabaseCreator */
-	private $dbcreator;
+	/** @var DatabaseInitializer */
+	private $dbInitializer;
 
-	public function __construct(\App\DatabaseCreator $dbcreator) {
-		$this->dbcreator = $dbcreator;
+	/** @var Nette\Database\Connection */
+	private $database;
+
+	public function __construct(DatabaseInitializer $dbInitializer, Nette\Database\Context $database) {
+		$this->dbInitializer = $dbInitializer;
+		$this->database = $database;
 	}
-	
-	public function startup() {
+
+	public function startup(): void {
 		parent::startup();
-		if ($this->dbcreator->createdb()) {
-			$this->flashMessage('database was created.');
+		if ($this->dbInitializer->initializeDb()) {
+			$this->flashMessage('Database was initialized.');
 		}
 	}
+
+	public function renderDefault(): void {
+			$this->database->table('meetings')->insert([
+				'name' =>'test',
+				'meeting_date' => time()
+			]);
+		}
 
 }

@@ -18,8 +18,7 @@ session:
 
 services:
 	router: App\Router\RouterFactory::createRouter
-	dbcreator: 
-		factory: App\DatabaseCreator
+	dbInitializer:
+		factory: App\DatabaseInitializer
 		setup:
 			- setDumpFilePath(%dumpFile%)
-			- setDbFilePath(%dbFile%)
