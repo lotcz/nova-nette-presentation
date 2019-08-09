@@ -36,7 +36,7 @@ final class DatabaseInitializer {
 
 	public function initializeDb(): bool {
 		if (!$this->isDbInitialized()) {
-			$this->reseDb();
+			$this->resetDb();
 			return true;
 		}
 		return false;
