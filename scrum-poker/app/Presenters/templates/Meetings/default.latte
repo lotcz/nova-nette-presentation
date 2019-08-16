@@ -1,0 +1,17 @@
+{block title}Meetings{/block}
+
+{block content}
+<table>
+	<tr>
+		<th>Datum</th>
+		<th>Název</th>
+	</tr>
+		
+	{foreach $meetings as $meeting}
+		<tr>
+			<td>{$meeting->meeting_date}</td>
+			<td>{$meeting->name}</td>
+		</tr>
+	{/foreach}
+
+</table>

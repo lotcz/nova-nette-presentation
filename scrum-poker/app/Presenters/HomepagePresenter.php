@@ -12,7 +12,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter {
 	/** @var DatabaseInitializer */
 	private $dbInitializer;
 
-	/** @var Nette\Database\Connection */
+	/** @var Nette\Database\Context */
 	private $database;
 
 	public function __construct(DatabaseInitializer $dbInitializer, Nette\Database\Context $database) {
