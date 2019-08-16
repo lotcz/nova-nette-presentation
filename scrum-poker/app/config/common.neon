@@ -1,6 +1,6 @@
 parameters:
 	dumpFile: %appDir%/db/createdb.sql
-	dbFile: %appDir%/temp/db.sqlite
+	dbFile: %appDir%/../temp/db.sqlite
 
 database:
 	dsn: 'sqlite:%dbFile%'

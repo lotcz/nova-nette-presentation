@@ -28,10 +28,10 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter {
 	}
 
 	public function renderDefault(): void {
-			$this->database->table('meetings')->insert([
-				'name' =>'test',
-				'meeting_date' => time()
-			]);
-		}
+		$this->database->table('meeting')->insert([
+			'name' => 'test',
+			'meeting_date' => time()
+		]);
+	}
 
 }

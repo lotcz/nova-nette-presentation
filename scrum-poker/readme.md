@@ -17,7 +17,12 @@ Specifikace a zadání [zde](docs/spec.md).
 - Výchozí adresář pro webový server je `www`
 - Adresáři **temp** je třeba nastavit práva pro zápis (týká se linuxu, nastavte práva zápisu pro uživatele, pod kterým běží Apache, většinou www-data)
 
+## Konfigurace
+
+- Výchozí konfigurace je v souboru **config/common.neon**.
+- Vlastní (lokální) konfiguraci vložte do souboru **config/local.neon**.
+
 ## Databáze
 
 - Ve výchozím stavu aplikace používá SQLite (soubor je uložen v adresáři temp)
-- Databáze se inicializuje při vstupu na úvodní stránku (pokud uděláte čistou instalaci a půjdete na jinou stránku než homepage, tak můžete dostat chybovou hlášku, že databáze neexistuje) 
+- Databáze se inicializuje při vstupu na úvodní stránku (pokud uděláte čistou instalaci a půjdete na jinou stránku než homepage, tak můžete dostat chybovou hlášku, že databáze neexistuje)

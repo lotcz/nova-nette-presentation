@@ -23,7 +23,7 @@ final class DatabaseInitializer {
 	}
 
 	public function isDbInitialized(): bool {
-		$rows = $this->database->fetchAll("SELECT name FROM sqlite_master WHERE type = ? AND name = ?", "table", "meetings");
+		$rows = $this->database->fetchAll("SELECT name FROM sqlite_master WHERE type = ? AND name = ?", "table", "meeting");
 		return (count($rows) > 0);
 	}
 
