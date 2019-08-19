@@ -10,7 +10,7 @@
 	{foreach $meetings as $meeting}
 		<tr>
 			<td>{$meeting->meeting_date}</td>
-			<td>{$meeting->name}</td>
+			<td><a n:href="Meeting:default $meeting->id">{$meeting->name}</a></td>
 		</tr>
 	{/foreach}
 

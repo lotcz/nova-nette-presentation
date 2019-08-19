@@ -15,9 +15,9 @@ CREATE TABLE user (
 	name VARCHAR(100) NULL
 );
 
-DROP TABLE IF EXISTS meeting_participant;
+DROP TABLE IF EXISTS meeting_user;
 
-CREATE TABLE meeting_participant (
+CREATE TABLE meeting_user (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	user_id INTEGER NOT NULL,
 	meeting_id INTEGER NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE meeting_participant (
 	FOREIGN KEY(meeting_id) REFERENCES meeting(id)
 );
 
-CREATE UNIQUE INDEX idx_meeting_participant ON meeting_participant(meeting_id, user_id);
+CREATE UNIQUE INDEX idx_meeting_user ON meeting_user(meeting_id, user_id);
 
 DROP TABLE IF EXISTS user_story;
 
