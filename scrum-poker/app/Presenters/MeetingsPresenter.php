@@ -16,6 +16,14 @@ final class MeetingsPresenter extends Nette\Application\UI\Presenter {
 		$this->database = $database;
 	}
 
+	public function startup(): void {
+		parent::startup();
+		if (!$this->getUser()->isLoggedIn()) {
+			$this->flashMessage('You must be logged in!');
+			$this->redirect('Homepage:default');
+		}
+	}
+
 	public function renderDefault(): void {
 		$meetings = $this->database->table('meeting');
 		$this->template->meetings = $meetings;
