@@ -4,8 +4,8 @@ CREATE TABLE meeting (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	name VARCHAR(100) NULL,
 	meeting_date DATETIME NOT NULL,
-	active_user_story_id INTEGER NULL,
-	FOREIGN KEY(active_user_story_id) REFERENCES user_story(id)
+	active_voting_id INTEGER NULL,
+	FOREIGN KEY(active_voting_id) REFERENCES voting(id)
 );
 
 CREATE INDEX idx_meeting_date ON meeting(meeting_date);
@@ -56,11 +56,12 @@ CREATE INDEX idx_voting_user_story ON voting(user_story_id);
 DROP TABLE IF EXISTS vote;
 
 CREATE TABLE vote (
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	story_points INTEGER NOT NULL,
 	voting_id INTEGER NOT NULL,
-	meeting_participant_id INTEGER NOT NULL,
+	meeting_user_id INTEGER NOT NULL,
 	FOREIGN KEY(voting_id) REFERENCES voting(id),
-	FOREIGN KEY(meeting_participant_id) REFERENCES meeting_participant(id)
+	FOREIGN KEY(meeting_user_id) REFERENCES meeting_user(id)
 );
 
-CREATE UNIQUE INDEX idx_vote ON vote(voting_id, meeting_participant_id);
+CREATE UNIQUE INDEX idx_vote ON vote(voting_id, meeting_user_id);

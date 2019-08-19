@@ -36,6 +36,13 @@
 		
 <h2>Aktivni hlasovani</h2>
 
-{if $active_us}
-	<h3>{$active_us->name}</h3>
+{if $active_voting && $active_user_story}
+	<h3>{$active_user_story->name}</h3>
+	{if $my_vote}
+		You voted: {$my_vote->story_points}
+	{else}
+		<a n:href="Meeting:vote $active_voting->id,0">0</a>
+		<a n:href="Meeting:vote $active_voting->id,1">1</a>
+		<a n:href="Meeting:vote $active_voting->id,2">2</a>
+	{/if}
 {/if}
