@@ -53,13 +53,11 @@ final class MeetingsPresenter extends Nette\Application\UI\Presenter {
 					'name' => $name
 				]
 			);
-			if (count($participant) == 0) {
-				$this->database->table('meeting_user')->insert([
-					'user_id' => $this->getUser()->getIdentity()->getId(),
-					'meeting_id' => $meeting->id,
-					'is_admin' => 1
-				]);
-			}
+			$this->database->table('meeting_user')->insert([
+				'user_id' => $this->getUser()->getIdentity()->getId(),
+				'meeting_id' => $meeting->id,
+				'is_admin' => 1
+			]);
 			$this->flashMessage('Schuze vytvorena');
 			$this->redirect('Meeting:default', $meeting->id);
 		}

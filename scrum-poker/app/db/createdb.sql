@@ -3,7 +3,9 @@ DROP TABLE IF EXISTS meeting;
 CREATE TABLE meeting (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	name VARCHAR(100) NULL,
-	meeting_date DATETIME NOT NULL
+	meeting_date DATETIME NOT NULL,
+	active_user_story_id INTEGER NULL,
+	FOREIGN KEY(active_user_story_id) REFERENCES user_story(id)
 );
 
 CREATE INDEX idx_meeting_date ON meeting(meeting_date);

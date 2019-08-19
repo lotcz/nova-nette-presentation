@@ -67,9 +67,9 @@ Vstupní podmínky:
 1. Uživatel klikne na tlačítko **Vytvořit novou user story**
 1. Systém zobrazí formulář pro vytvoření/editaci user story
 1. Uživatel vyplní název user story
-1. Uživatel klikne na tlačítko **Zahájit hlasování**
-1. Systém vytvoří novou user story, k ní nové hlasování a označí toto hlasování jako aktivní pro meeting
-1. Systém zobrazí všem účastníkům meetingu na detail aktivního user story
+1. Uživatel klikne na tlačítko **Uložit**
+1. Systém vytvoří novou user story
+1. Systém vrátí uživatele zpět na detail meetingu
 
 ### UC 5 - Zahájit hlasování
 
@@ -77,17 +77,11 @@ Vstupní podmínky:
 - uživatel je přihlášen
 - uživatel je na detailu meetingu
 - meeting nemá aktivní user story
-- meeting již má odhlasované user story
+- meeting má neodhlasované user story
 
-1. Uživatel klikne na tlačítko **Opakovat hlasování**
-1. Systém uzavře hlasování (zruší označení user story jako aktivní)
-1. Systém zobrazí všem účastníkům výsledek hlasování
-1. IF (alespoň jeden z účastníků zvolil otazník nebo nekonečno nebo účastníci hlasovali různě)
- - THEN systém zobrazí hlášku *hlasování nelze uzavřít*
- - ELSE
-    - IF (všichni účastníci hlasovali stejně)
-      - THEN (systém uloží počet bodů jako výsledek hlasování)
-      - ELSE (všichni účastníci hlasovali s rozdílem max. 1 stupně => systém uloží vyšší počet bodů jako výsledek hlasování
+1. Uživatel klikne na tlačítko **Zahájit hlasování** vedle názvu user story
+1. Systém otevře hlasování (označení user story jako aktivní)
+1. Systém zobrazí všem účastníkům nové hlasování
 
 ### UC 6 - Hlasovat o user story
 

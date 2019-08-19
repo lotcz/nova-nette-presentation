@@ -38,9 +38,18 @@ final class MeetingPresenter extends Nette\Application\UI\Presenter {
 				]);
 			}
 			$participants = $meeting->related('meeting_user');
+			$user_stories = $meeting->related('user_story');
 			$this->template->meeting = $meeting;
 			$this->template->participants = $participants;
+			$this->template->user_stories = $user_stories;
+			$this->template->active_us = $meeting->ref('user_story', 'active_user_story_id');
 		}
 	}
 
+	public function renderActivateUserStory($user_story_id, $meeting_id): void {
+		$this->database->table('meeting')
+			->where('id', $meeting_id)
+			->update(['active_user_story_id' => $user_story_id]);
+		$this->redirect('Meeting:default', $meeting_id);
+	}
 }

@@ -4,17 +4,38 @@
 <h1>{$meeting->name}</h1>
 	
 <h2>Ucastnici</h2>
-	<table>
+<table>
+	<tr>
+		<th>Jmeno</th>
+		<th></th>
+	</tr>
+	{foreach $participants as $participant}
 		<tr>
-			<th>Jmeno</th>
-			<th></th>
+			<td>{$participant->user->name}</td>
+			<td></td>
 		</tr>
-			
-		{foreach $participants as $participant}
-			<tr>
-				<td>{$participant->user->name}</td>
-				<td></td>
-			</tr>
-		{/foreach}
+	{/foreach}
+</table>
+	
+<h2>User Stories</h2>
+<a n:href="UserStory:add $meeting->id">Create User Story</a>
+<table>
+	<tr>
+		<th>Nazev</th>
+		<th>Body</th>
+		<th></th>
+	</tr>
+	{foreach $user_stories as $user_story}
+		<tr>
+			<td>{$user_story->name}</td>
+			<td>{$user_story->story_points}</td>
+			<td><a n:href="Meeting:activateUserStory $user_story->id,$meeting->id">start voting</a></td>
+		</tr>
+	{/foreach}
+</table>
+		
+<h2>Aktivni hlasovani</h2>
 
-	</table>
+{if $active_us}
+	<h3>{$active_us->name}</h3>
+{/if}
