@@ -8,6 +8,15 @@
 	</head>
 
 	<body>
+		<div class="header">
+			{if $user->isLoggedIn()}
+				{$user->getIdentity()->username}
+				(<a n:href="LogOut:default">Log out</a>)
+			{else}
+				Anonym
+			{/if}
+		</div>
+		
 		<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
 		<div id="content">

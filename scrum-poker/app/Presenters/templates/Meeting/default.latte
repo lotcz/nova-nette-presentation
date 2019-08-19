@@ -1,0 +1,20 @@
+{block title}{$meeting->name}{/block}
+
+{block content}
+<h1>{$meeting->name}</h1>
+	
+<h2>Ucastnici</h2>
+	<table>
+		<tr>
+			<th>Jmeno</th>
+			<th></th>
+		</tr>
+			
+		{foreach $participants as $participant}
+			<tr>
+				<td>{$participant->user->name}</td>
+				<td></td>
+			</tr>
+		{/foreach}
+
+	</table>
