@@ -48,6 +48,7 @@ CREATE TABLE voting (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	story_points INTEGER NULL,
 	user_story_id INTEGER NOT NULL,
+	is_finished INTEGER NOT NULL DEFAULT(0),
 	FOREIGN KEY(user_story_id) REFERENCES user_story(id)
 );
 

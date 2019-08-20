@@ -34,9 +34,15 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter {
 
 	protected function createComponentLoginForm() {
 		$form = new Nette\Application\UI\Form;
-		$form->addText('name', 'Jméno:')
+		$name_element = $form->addText('name', 'Jméno:')
 			->setRequired('Please enter your name.')
-			->addRule(Form::MIN_LENGTH, 'Your name has to be at least %d long', 3);;
+			->addRule(Form::MIN_LENGTH, 'Your name has to be at least %d long', 3);
+		if ($this->getUser()->isLoggedIn()) {
+			$user = $this->database->table('user')->get($this->getUser()->getId());
+			if ($user) {
+				$name_element->setDefaultValue($user->name);
+			}
+		}
 		$form->addSubmit('login', 'Vstoupit');
 		$form->onSuccess[] = [$this, 'loginFormSucceeded'];
 		return $form;

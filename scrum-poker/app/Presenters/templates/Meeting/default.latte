@@ -38,11 +38,25 @@
 
 {if $active_voting && $active_user_story}
 	<h3>{$active_user_story->name}</h3>
-	{if $my_vote}
-		You voted: {$my_vote->story_points}
+	{if $active_voting->is_finished}
+		<table>
+			{foreach $votes as $vote}
+				<tr>
+					<td>{$vote->ref('meeting_user')->ref('user')->name}</td>
+					<td><strong>{$vote->story_points}</strong></td>
+				</tr>
+			{/foreach}
+		</table>
 	{else}
-		<a n:href="Meeting:vote $active_voting->id,0">0</a>
-		<a n:href="Meeting:vote $active_voting->id,1">1</a>
-		<a n:href="Meeting:vote $active_voting->id,2">2</a>
+		{if $my_vote}
+			You voted: <strong>{$my_vote->story_points}</strong>
+		{else}
+			<a n:href="Meeting:vote $active_voting->id,0">0</a>
+			<a n:href="Meeting:vote $active_voting->id,1">1</a>
+			<a n:href="Meeting:vote $active_voting->id,2">2</a>
+			<a n:href="Meeting:vote $active_voting->id,3">3</a>
+			<a n:href="Meeting:vote $active_voting->id,5">5</a>
+			<a n:href="Meeting:vote $active_voting->id,8">8</a>
+		{/if}
 	{/if}
 {/if}
