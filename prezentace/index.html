@@ -28,6 +28,8 @@
 			href="http://zavadil.eu/reveal.js/css/theme/black.css"
 			id="theme"
 		/>
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="http://zavadil.eu/reveal.js/lib/css/zenburn.css"/>
 
 		<style>
 			.reveal section img {
@@ -62,6 +64,10 @@
 			.reveal table {
 				font-size: 65%;
 			}
+			
+			.reveal pre {
+				font-size: 50%;
+			}
 		</style>
 	</head>
 
@@ -79,12 +85,13 @@
 							### Key concepts
 
 							- MVC
-							- DRY
 							- DI
+							- DRY
 
 						</textarea>
 
-					<aside class="notes"></aside>
+					<aside class="notes">
+					</aside>
 				</section>
 				
 				<section data-markdown>
@@ -95,22 +102,21 @@
 					</textarea>
 
 					<aside class="notes">
-					Controller je presenter. View v Latte.
+					Controller je presenter. View v Latte. 
+					Model - není součástí Nette, možnost extension např. Doctrine.
 					</aside>
 				</section>
 				
 				<section data-markdown>
 					<textarea data-template>
-						### DRY
-							
-						Don't repeat yourself!
+						![](img/MVC.png)
 					</textarea>
 
 					<aside class="notes">
-					Code reusability.
+					Pánem situace je Controller. View je UI. Model - data a aplikační logika.
 					</aside>
 				</section>
-				
+
 				<section data-markdown>
 					<textarea data-template>
 						### DI
@@ -122,14 +128,60 @@
 					Podstatou Dependency Injection (DI) je odebrat třídám zodpovědnost za získávání objektů, které potřebují ke své činnosti (tzv. služeb) a místo toho jim služby předávat při vytváření.
 					</aside>
 				</section>
+				
+				<section data-markdown>
+					<textarea data-template>
+						<pre class="javascript"><code>
+final class MeetingPresenter extends Nette\Application\UI\Presenter {
+	
+	/** @var Nette\Database\Context */
+	private $database;
 
+	public function __construct(Nette\Database\Context $database) {
+		$this->database = $database;
+	}
+
+	public function renderDefault($id): void {
+		$meeting = $this->database->table('meeting')->get($id);
+						</code></pre>
+					</textarea>
+
+					<aside class="notes">
+					Příklad DI pomocí konstruktoru. 
+					Další možnosti např. pomocí setteru nebo @inject
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### DRY
+							
+						Don't repeat yourself!
+					</textarea>
+
+					<aside class="notes">
+					Code reusability.
+					Nette je složeno z komponent, které jdou použít samostatně.
+					</aside>
+				</section>
+					
 				<section data-markdown>
 					<textarea data-template>
 							### NEON
 							
-							Formát konfiguračních souborů.
+							<span class="small">Configuration files format</span>
 							
-							https://ne-on.org
+							<pre class="yaml"><code>
+parameters:
+	dumpFile: %appDir%/db/createdb.sql
+	dbFile: %appDir%/../temp/db.sqlite
+
+database:
+	dsn: 'sqlite:%dbFile%'
+	
+services:
+	authenticator: App\MyAuthenticator
+							</code></pre>
 					</textarea>
 
 					<aside class="notes">
@@ -137,12 +189,21 @@
 						JSON bez závorek, uvozovak a jiných nedůležitých znaků.
 					</aside>
 				</section>
-				
+								
 				<section data-markdown>
 					<textarea data-template>
 							### Database Explorer
 							
-							Zjednodušuje práci s daty
+							<span class="small">Easy data manipulation</span>
+							
+							<pre class="php"><code>
+$meeting = $this->database->table('meeting')->get($id);
+
+$this->database->table('meeting_user')->insert([
+	'user_id' => $user_id,
+	'meeting_id' => $meeting->id
+]);
+							</code></pre>
 					</textarea>
 
 					<aside class="notes">
@@ -150,7 +211,20 @@
 					</aside>
 				</section>
 				
-				<section><h2>To je vše</h2></section>
+				<section data-markdown>
+					<textarea data-template>
+							### Extensions
+							
+							http://componette.com/
+							
+					</textarea>
+
+					<aside class="notes">
+						Možnost stáhnout si rozšíření nebo si napsat vlastní.
+					</aside>
+				</section>
+							
+				<section><h2>That's all folks.</h2></section>
 			</div>
 		</div>
 
@@ -183,7 +257,7 @@
 							return !!document.querySelector("[data-markdown]");
 						}
 					},
-					//{ src: '/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'http://zavadil.eu/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{
 						src: "http://zavadil.eu/reveal.js/plugin/search/search.js",
 						async: true
