@@ -135,4 +135,12 @@ final class MeetingPresenter extends Nette\Application\UI\Presenter {
 
 		$this->redirect('Meeting:default', $meeting->id);
 	}
+	
+	public function renderRemoveParticipant($meeting_user_id, $meeting_id): void {
+		$voting = $this->database->table('meeting_user')
+			->delete([
+				'id' => $meeting_user_id
+			]);
+		$this->redirect('Meeting:default', $meeting_id);
+	}
 }

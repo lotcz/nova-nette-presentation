@@ -12,7 +12,7 @@
 	{foreach $participants as $participant}
 		<tr>
 			<td>{$participant->user->name}</td>
-			<td></td>
+			<td><a n:href="Meeting:removeParticipant $participant->id,$meeting->id">remove</a></td>
 		</tr>
 	{/foreach}
 </table>
@@ -47,6 +47,7 @@
 				</tr>
 			{/foreach}
 		</table>
+		<a n:href="Meeting:activateUserStory $active_user_story->id,$meeting->id">repeat voting</a>
 	{else}
 		{if $my_vote}
 			You voted: <strong>{$my_vote->story_points}</strong>
